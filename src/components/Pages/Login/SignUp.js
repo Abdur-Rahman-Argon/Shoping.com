@@ -1,7 +1,18 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import SocialLogin from "./SocialLogin";
 
 const SignUp = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, UpdatError] = useUpdateProfile(auth);
+
   const {
     register,
     formState: { errors },
@@ -9,7 +20,17 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const displayName = data.name;
+    const email = data.email;
+    const password = data.new_password;
+    const confirmPassword = data.confirm_password;
+    const user = { displayName, email };
+
     // console.log(data);
+    if (password === confirmPassword) {
+      createUserWithEmailAndPassword(email, password);
+      await updateProfile(displayName);
+    }
   };
 
   return (
