@@ -11,7 +11,7 @@ const Banner = () => {
           <div className="">
             <img
               src={banner}
-              className=" w-60 md:w-[450px] lg:w-[600px]"
+              className=" w-60 sm:w-[450px] lg:w-[600px]"
               alt="banner-image"
             />
           </div>

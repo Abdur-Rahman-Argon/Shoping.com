@@ -6,6 +6,9 @@ const Home = () => {
     <div>
       {/* Banner */}
       <Banner></Banner>
+
+      {/* best feature  */}
+      <DeliveryProsess></DeliveryProsess>
     </div>
   );
 };
