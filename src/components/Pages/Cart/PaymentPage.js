@@ -26,9 +26,7 @@ const PaymentPage = () => {
     isLoading,
     refetch,
   } = useQuery("myOrder", () =>
-    fetch(`https://frozen-retreat-64301.herokuapp.com/myOrder/${orderId}`).then(
-      (res) => res.json()
-    )
+    fetch(`http://localhost:5000/myOrder/${orderId}`).then((res) => res.json())
   );
 
   if (isLoading) {
@@ -53,15 +51,24 @@ const PaymentPage = () => {
               <div className="px-3">
                 <PriceSummary myOrder={myOrder}></PriceSummary>
               </div>
-
-              <button
-                onClick={() => setShow(true)}
-                className="btn w-full btn-success font-bold mt-5"
-                type="submit"
-              >
-                proceed to pay
-              </button>
+              {show ? null : (
+                <button
+                  onClick={() => setShow(true)}
+                  className="btn w-full btn-success font-bold mt-5"
+                  type="submit"
+                >
+                  proceed to pay
+                </button>
+              )}
             </div>
+
+            {show ? (
+              <div className="card w-full md:w-[500px] mx-auto py-10  px-5 bg-base-100 shadow-xl">
+                <Elements stripe={stripePromise}>
+                  <PaymentCard myOrder={myOrder}></PaymentCard>
+                </Elements>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
