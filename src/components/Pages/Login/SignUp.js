@@ -7,6 +7,7 @@ import {
 import auth from "../../../firebase.init";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
+import useToken from "../../utilites/useToken";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -19,6 +20,19 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  const [token] = useToken(user);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname;
+
+  useEffect(() => {
+    if (user && token) {
+      navigate(from, { replace: true });
+    }
+  }, [user, token, from, navigate]);
+
   const onSubmit = async (data) => {
     const displayName = data.name;
     const email = data.email;
@@ -30,6 +44,18 @@ const SignUp = () => {
     if (password === confirmPassword) {
       createUserWithEmailAndPassword(email, password);
       await updateProfile(displayName);
+
+      fetch(`http://localhost:5000/user/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          console.log(result);
+        });
     }
   };
 
