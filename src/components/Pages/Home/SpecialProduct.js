@@ -3,21 +3,20 @@ import { useQuery } from "react-query";
 import Product from "../AllProducts/Product";
 
 const SpecialProduct = () => {
+  // product load from data base
   const {
     data: products,
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("https://frozen-retreat-64301.herokuapp.com/allProducts").then(
-      (res) => res.json()
-    )
+    fetch("http://localhost:5000/allProducts").then((res) => res.json())
   );
 
   if (isLoading) {
     return;
   }
 
-  const specialProducts = products.slice(5, 9);
+  const specialProducts = products.slice(5, 9); // three product
 
   return (
     <div>

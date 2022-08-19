@@ -1,17 +1,61 @@
 import React, { useState } from "react";
+import { p, Navigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const Product = ({ product }) => {
+  const [like, setLike] = useState(false);
+  const [user] = useAuthState(auth);
+  const currentPrice = parseInt(
+    product.price - product.price / product.discount
+  );
+
+  const addLikeList = () => {
+    console.log(product);
+    setLike(true);
+    const wishList = [];
+    wishList.push(product);
+    const beforeWishList = JSON.parse(localStorage.getItem("likeList"));
+
+    if (beforeWishList) {
+      const likeList = wishList.concat(beforeWishList);
+      localStorage.setItem("likeList", JSON.stringify(likeList));
+      // console.log(wishList, like, beforeWishList, likeList);
+    } else {
+      localStorage.setItem("likeList", JSON.stringify(wishList));
+      // console.log(wishList, like, beforeWishList);
+    }
+  };
+
+  const removeLikeList = () => {
+    setLike(false);
+
+    const beforeWishList = JSON.parse(localStorage.getItem("likeList"));
+    if (beforeWishList) {
+      const removeItems = beforeWishList.find(
+        (element) => element._id === product._id
+      );
+      //arr.find(o => o.name === 'string 1');
+      //arr.filter(item => item !== value)
+      const likeList = beforeWishList.filter((item) => item !== removeItems);
+      localStorage.setItem("likeList", JSON.stringify(likeList));
+    }
+  };
+
   return (
     <div class=" rounded-xl px-2 pt-2 pb-3 w-64  bg-gray-50 mx-auto my-3 hover:shadow-2xl shadow-md border-[1px]">
-      <figure>
-        <img src={product.image} alt="product" className="w-32 mx-auto" />
-      </figure>
-
+      <p to={`/productDetails/${product._id}`}>
+        <figure>
+          <img src={product.image} alt="product" className="w-32 mx-auto" />
+        </figure>
+      </p>
       <div class=" my-0 ">
-        <h2 class=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
-          {product.productTitle}
-        </h2>
-
+        <p to={`/productDetails/${product._id}`}>
+          <h2 class=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
+            {product.productTitle}
+          </h2>
+        </p>
         <div className="flex gap-1 items-end my-1">
           <h3 className="text-base font-bold text-red-500">
             {currentPrice} <span className=" text-lg font-[800]"> ৳</span>
