@@ -1,5 +1,13 @@
 import React from "react";
+import AskQuestion from "./AskQuestion";
 import Banner from "./Banner";
+import CustomerReview from "./CustomerReview";
+import DeliveryProsess from "./DeliveryProsess";
+import LatestProducts from "./LatestProducts";
+import Productj from "./Productj";
+import SpecialProduct from "./SpecialProduct";
+import Subscribe from "./Subscribe";
+import TachnicalSupport from "./TachnicalSupport";
 
 const Home = () => {
   return (
@@ -9,6 +17,14 @@ const Home = () => {
 
       {/* best feature  */}
       <DeliveryProsess></DeliveryProsess>
+
+      {/* Latest Product */}
+      <div className="w-full my-10 px-5">
+        <h1 className="text-3xl text-left font-bold mx-2 my-5 text-slate-800">
+          Latest Product:
+        </h1>
+        <LatestProducts></LatestProducts>
+      </div>
 
       {/* Special product */}
       <div className="w-full my-10 px-5">
