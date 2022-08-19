@@ -1,10 +1,10 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navber from "./components/Shared/Navber";
+import Footer from "./components/Shared/Footer";
 import Home from "./components/Pages/Home/Home";
 import Login from "./components/Pages/Login/Login";
 import SignUp from "./components/Pages/Login/SignUp";
-import Footer from "./components/Shared/Footer";
 import AllProducts from "./components/Pages/AllProducts/AllProducts";
 import { ToastContainer } from "react-toastify";
 
