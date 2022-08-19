@@ -15,6 +15,7 @@ const Cart = () => {
   const [productList, setProductList] = useState([]);
   const navigate = useNavigate();
 
+  // cart product load
   const {
     data: cartItems,
     isLoading,
@@ -29,27 +30,16 @@ const Cart = () => {
     return;
   }
 
+  // price calculate
   const grandTotal = subTotal;
   const tax = grandTotal * 0.15;
   const sipping = 85;
   const Total = grandTotal + sipping + parseInt(tax);
 
-  if (productList) {
-    console.log(productList);
-  }
-
+  // order confirm
   const orderNow = () => {
-    const manageOrder = {
-      orderCancel: "Canceled",
-      deliveryStatus: "delivered",
-      deliveryConfirmDate: "",
-      expectDeliveryDate: "",
-      Packaging: "",
-      Courier: "",
-      Shipped: "",
-    };
-
-    const date = new Date().toString().slice(3, 15);
+    // const date = new Date().toString().slice(3, 15);
+    const date = new Date(); //  order date
 
     //
     const orderInformation = {
@@ -66,6 +56,7 @@ const Cart = () => {
       totalPrice: Total,
     };
 
+    // order post api
     fetch("http://localhost:5000/myOrder", {
       method: "POST",
       headers: {
@@ -77,6 +68,8 @@ const Cart = () => {
       .then((result) => {
         console.log(result);
         console.log();
+
+        // order success then payment page go
         if (result.success === true) {
           navigate(`/payment/${result.result.insertedId}`);
           toast("Your Product is Processing Now, Please Payment");
@@ -90,6 +83,7 @@ const Cart = () => {
         Shopping Carts
       </h1>
       <div className=" flex lg:gap-0 flex-col lg:flex-row">
+        {/*  cart product list here */}
         <div className=" w-full mt-3 px-8 pb-2 border-0 shadow-md border-gray-300 md:w-full lg:w-[800px] text-center">
           <div>
             <div className="hidden lg:pb-2 lg:flex text-base font-semibold gap-16  lg:justify-around lg:items-center lg:my-0">
@@ -117,6 +111,7 @@ const Cart = () => {
 
             <div class=" hidden lg:flex divider my-0"></div>
 
+            {/* single product  map */}
             <div>
               {cartItems?.map((cartProducts) => (
                 <CartProduct
@@ -146,6 +141,8 @@ const Cart = () => {
             </div>
           </div>
         </div>
+
+        {/*  price calculate & summery */}
         <div className="lg:flex-2 py-5 px-7 w-full mx-auto text-center bg-slate-50 shadow-md">
           <h1 className="text-2xl my-1 text-start font-semibold">Summary</h1>
 
@@ -193,6 +190,7 @@ const Cart = () => {
           <div class="divider  "></div>
           <CouponCode></CouponCode>
 
+          {/* order confirm btn */}
           <div>
             <button
               onClick={orderNow}
