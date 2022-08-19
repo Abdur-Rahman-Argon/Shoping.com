@@ -20,7 +20,7 @@ const PaymentCard = ({ myOrder }) => {
   const price = parseInt(totalPrice);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/payment`, {
+    fetch(`https://frozen-retreat-64301.herokuapp.com/payment`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -107,7 +107,7 @@ const PaymentCard = ({ myOrder }) => {
           paymentIntent,
         };
 
-        fetch(`http://localhost:5000/myOrder/${_id}`, {
+        fetch(`https://frozen-retreat-64301.herokuapp.com/myOrder/${_id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

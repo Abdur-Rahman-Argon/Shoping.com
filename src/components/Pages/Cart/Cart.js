@@ -21,9 +21,9 @@ const Cart = () => {
     isLoading,
     refetch,
   } = useQuery("cartsection", () =>
-    fetch(`http://localhost:5000/addToCart/${user.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://frozen-retreat-64301.herokuapp.com/addToCart/${user.email}`
+    ).then((res) => res.json())
   );
 
   if (isLoading) {
@@ -57,7 +57,7 @@ const Cart = () => {
     };
 
     // order post api
-    fetch("http://localhost:5000/myOrder", {
+    fetch("https://frozen-retreat-64301.herokuapp.com/myOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",

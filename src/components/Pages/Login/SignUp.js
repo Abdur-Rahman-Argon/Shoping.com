@@ -45,7 +45,7 @@ const SignUp = () => {
       createUserWithEmailAndPassword(email, password);
       await updateProfile(displayName);
 
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://frozen-retreat-64301.herokuapp.com/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

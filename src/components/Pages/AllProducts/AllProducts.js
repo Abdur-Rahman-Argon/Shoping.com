@@ -10,7 +10,9 @@ const AllProducts = () => {
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("http://localhost:5000/allProducts").then((res) => res.json())
+    fetch("https://frozen-retreat-64301.herokuapp.com/allProducts").then(
+      (res) => res.json()
+    )
   );
 
   // const [products, isLoading] = useProduct();

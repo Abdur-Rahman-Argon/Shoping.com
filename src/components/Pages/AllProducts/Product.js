@@ -51,7 +51,7 @@ const Product = ({ product }) => {
       Product: Product,
     };
 
-    fetch("http://localhost:5000/addToCart", {
+    fetch("https://frozen-retreat-64301.herokuapp.com/addToCart", {
       method: "POST",
       headers: {
         "content-type": "application/json",

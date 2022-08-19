@@ -12,9 +12,9 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery("myOrder", () =>
-    fetch(`http://localhost:5000/myOrders/${user.email}`).then((res) =>
-      res.json()
-    )
+    fetch(
+      `https://frozen-retreat-64301.herokuapp.com/myOrders/${user.email}`
+    ).then((res) => res.json())
   );
 
   if (isLoading) {

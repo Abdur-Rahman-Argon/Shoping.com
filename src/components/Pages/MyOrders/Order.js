@@ -28,14 +28,17 @@ const Order = ({ order }) => {
 
     const orderCancel = { id: order._id };
 
-    fetch(`http://localhost:5000/myOrderRemove/${order._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        // /*    authorization: `Bearer ${localStorage.getItem("accessToken")}*/`,
-      },
-      body: JSON.stringify(orderCancel),
-    })
+    fetch(
+      `https://frozen-retreat-64301.herokuapp.com/myOrderRemove/${order._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          // /*    authorization: `Bearer ${localStorage.getItem("accessToken")}*/`,
+        },
+        body: JSON.stringify(orderCancel),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setProcessing(false);
