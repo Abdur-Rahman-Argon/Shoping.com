@@ -10,6 +10,14 @@ const Home = () => {
       {/* best feature  */}
       <DeliveryProsess></DeliveryProsess>
 
+      {/* customer review */}
+      <div className="w-full my-10 px-5 first-letter:">
+        <h1 className="text-3xl text-left font-bold mx-2 my-5 text-slate-800">
+          Customer Reviews:
+        </h1>
+        <CustomerReview></CustomerReview>
+      </div>
+
       {/* technical support */}
       <div className="w-full px-5">
         <h1 className="text-3xl text-left font-bold   my-5 text-slate-800">
