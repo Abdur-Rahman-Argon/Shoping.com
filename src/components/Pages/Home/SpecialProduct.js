@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
+import Product from "../AllProducts/Product";
 
 const SpecialProduct = () => {
   const {
@@ -7,7 +8,9 @@ const SpecialProduct = () => {
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("http://localhost:5000/allProducts").then((res) => res.json())
+    fetch("https://frozen-retreat-64301.herokuapp.com/allProducts").then(
+      (res) => res.json()
+    )
   );
 
   if (isLoading) {
@@ -20,7 +23,7 @@ const SpecialProduct = () => {
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {specialProducts.map((product) => (
-          <li>{product}</li>
+          <Product key={product._id} product={product}></Product>
         ))}
       </div>
     </div>
