@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { p, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
@@ -43,19 +43,44 @@ const Product = ({ product }) => {
     }
   };
 
+  const addToCart = () => {
+    const addedProduct = {
+      userName: user.displayName,
+      email: user.email,
+      ProductQuantity: "1",
+      Product: Product,
+    };
+
+    fetch("http://localhost:5000/addToCart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addedProduct),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.success === true) {
+          Navigate("/");
+          toast("Successfully add to Cart");
+        }
+      });
+  };
+
   return (
     <div class=" rounded-xl px-2 pt-2 pb-3 w-64  bg-gray-50 mx-auto my-3 hover:shadow-2xl shadow-md border-[1px]">
-      <p to={`/productDetails/${product._id}`}>
+      <Link to={`/productDetails/${product._id}`}>
         <figure>
           <img src={product.image} alt="product" className="w-32 mx-auto" />
         </figure>
-      </p>
+      </Link>
       <div class=" my-0 ">
-        <p to={`/productDetails/${product._id}`}>
+        <Link to={`/productDetails/${product._id}`}>
           <h2 class=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
             {product.productTitle}
           </h2>
-        </p>
+        </Link>
         <div className="flex gap-1 items-end my-1">
           <h3 className="text-base font-bold text-red-500">
             {currentPrice} <span className=" text-lg font-[800]"> ৳</span>
