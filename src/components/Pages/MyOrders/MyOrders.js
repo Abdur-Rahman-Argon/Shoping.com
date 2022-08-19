@@ -20,10 +20,9 @@ const MyOrders = () => {
   if (isLoading) {
     return;
   }
-
-  // if (myOrder) {
-  //   console.log(myOrder.length);
-  // }
+  if (myOrder) {
+    console.log(myOrder.length);
+  }
 
   return (
     <div className="">
@@ -33,7 +32,13 @@ const MyOrders = () => {
         </h1>
       </div>
 
-      <div className="OrderContainer  px-4"></div>
+      <div className="OrderContainer  px-4">
+        {myOrder.length === 0
+          ? null
+          : myOrder.map((order) => (
+              <Order key={order._id} order={order}></Order>
+            ))}
+      </div>
     </div>
   );
 };
