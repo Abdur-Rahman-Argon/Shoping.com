@@ -107,7 +107,21 @@ const PaymentCard = ({ myOrder }) => {
           paymentIntent,
         };
 
-        
+        fetch(`http://localhost:5000/myOrder/${_id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+            // /*    authorization: `Bearer ${localStorage.getItem("accessToken")}*/`,
+          },
+          body: JSON.stringify(payment),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            //     console.log(data);
+            setProcessing(false);
+            toast("Your Payment Is Successfully Complete.");
+          });
+      }
 
       // console.log(error, paymentIntent);
     }
