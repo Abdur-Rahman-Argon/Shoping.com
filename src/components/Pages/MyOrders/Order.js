@@ -1,4 +1,5 @@
 import React from "react";
+// import tracking from "../../../images/tracking.png";
 import SingleProduct from "./SingleProduct";
 import TrackingOrder from "./TrackingOrder";
 import { toast } from "react-toastify";
@@ -82,7 +83,7 @@ const Order = ({ order }) => {
           ))}
         </div>
         <div className=" divider"></div>
-
+        <TrackingOrder orderInfo={orderInfo}></TrackingOrder>
         <div className=" divider my-1"></div>
         <div className=" flex justify-between my-1">
           <button className="mx-10 font-bold  text-lg text-orange-500  hover:text-red-500 "></button>
