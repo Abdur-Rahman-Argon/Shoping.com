@@ -4,7 +4,6 @@ import Banner from "./Banner";
 import CustomerReview from "./CustomerReview";
 import DeliveryProsess from "./DeliveryProsess";
 import LatestProducts from "./LatestProducts";
-import Productj from "./Productj";
 import SpecialProduct from "./SpecialProduct";
 import Subscribe from "./Subscribe";
 import TachnicalSupport from "./TachnicalSupport";
