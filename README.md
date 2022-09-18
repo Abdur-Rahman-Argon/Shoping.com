@@ -8,20 +8,25 @@ Live-Site [Live-Link]()
 
 #### Description:
 
-My website is Car Parts Industry, we display our parts website and customer parches it. then payment. we show customer review in home page. and our customer and parches summary.
+My website isShoping.com, It is Full E-commerce WEbsite. Customer visist our website and see our product. They are add to his cart and also love product his wishlist. They show his cart product and also confirm order. They also payment his order. If his order paid then they cannot remove it ether can remove it. They also track his order and see his orders position.
 
 ### How Works my Website?
+- 1st data load from mongoDB database and  show home page and shop page.
+- user Parches product and  abb his cart or likes.
+- customer confirm his carts order and also payment complete.
+- if not paid then cancel his order. or paid order cannot cancel.
+- admin add new product add that upload in  server site and also show client site.
+- Customer create a account, login, reset his password or profile Update.
+- Use Firebase For Authentication System and data store for MongoDb database.
+- If received order then customer add review and show It home page.
 
-- 1st data load from mongoDB and Home and Parts Page.
-- user Parches and Payment
-- if not payment cancel item from client site and server site.
-- admin add new parts add client site and see server site
-- Customer create, login, reset his password or profile.
-- Firebase Authentication System and MongoDb server.
-- customer add review and seen home page.
+#client Site Tachnology:
+- HTML5
+- CSS3
+- Javascript(ES6)
+- React.Js
 
 # Used Frame-work and Library
-
 - React Library.
 - React TailWind Css
 - Daisy Ui
@@ -32,7 +37,6 @@ My website is Car Parts Industry, we display our parts website and customer parc
 - React Bootstrap
 
 # ServerSite use
-
 - Node Js
 - express js
 - MongoDb
