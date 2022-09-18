@@ -1,8 +1,8 @@
 # Car-Parts-Industry
 
-## Live-Site [Live-Link](https://shopping-early.web.app/)
-## Client-Site-code [Link](https://github.com/Shoping.com)
-## Server-Site-code [Link]([https://github.com/](https://github.com/Abdur-Rahman-Argon/shoping-server))
+### Live-Site [Live-Link](https://shopping-early.web.app/)
+### Client-Site-code [Link](https://github.com/Shoping.com)
+### Server-Site-code [Link]([https://github.com/](https://github.com/Abdur-Rahman-Argon/shoping-server))
 
 
 
