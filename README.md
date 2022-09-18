@@ -1,4 +1,4 @@
-# Car-Parts-Industry
+# Shoping.com
 
 ### Live-Site [Live-Link](https://shopping-early.web.app/)
 ### Client-Site-code [Link](https://github.com/Abdur-Rahman-Argon/Shoping.com)
@@ -20,13 +20,13 @@ My website isShoping.com, It is Full E-commerce WEbsite. Customer visist our web
 - Use Firebase For Authentication System and data store for MongoDb database.
 - If received order then customer add review and show It home page.
 
-#client Site Tachnology:
+### client Site Tachnology:
 - HTML5
 - CSS3
 - Javascript(ES6)
 - React.Js
 
-# Used Frame-work and Library
+### Used Frame-work and Library
 - React Library.
 - React TailWind Css
 - Daisy Ui
@@ -36,7 +36,7 @@ My website isShoping.com, It is Full E-commerce WEbsite. Customer visist our web
 - react stripe
 - React Bootstrap
 
-# ServerSite use
+### ServerSite use
 - Node Js
 - express js
 - MongoDb
