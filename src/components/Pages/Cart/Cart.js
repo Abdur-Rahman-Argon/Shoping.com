@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import auth from "../../../firebase.init";
 import CartProduct from "./CartProduct";
 import CouponCode from "./CouponCode";
+import { useGetCartProductMutation } from "../../../features/api/apiSlice";
 
 const Cart = () => {
   const [user] = useAuthState(auth);
@@ -16,20 +17,26 @@ const Cart = () => {
   const navigate = useNavigate();
 
   // cart product load
-  const {
-    data: cartItems,
-    isLoading,
-    refetch,
-  } = useQuery("cartsection", () =>
-    fetch(`http://localhost:5000/addToCart/${user.email}`).then((res) =>
-      res.json()
-    )
-  );
+  // const {
+  //   data: cartItems,
+  //   isLoading,
+  //   refetch,
+  // } = useQuery("cartsection", () =>
+  //   fetch(`http://localhost:5000/addToCart/${user.email}`).then((res) =>
+  //     res.json()
+  //   )
+  // );
+  const [getCartProduct, { isLoading, data }] = useGetCartProductMutation();
+
+  useEffect(() => {
+    getCartProduct(user.email);
+  }, [user]);
 
   if (isLoading) {
     return;
   }
 
+  const cartItems = data;
   // price calculate
   const grandTotal = subTotal;
   const tax = grandTotal * 0.15;

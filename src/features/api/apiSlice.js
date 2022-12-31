@@ -7,9 +7,16 @@ export const productApi = createApi({
   }),
   endpoints: (builder) => ({
     getProduct: builder.query({
-      query: () => "/products",
+      query: () => ({ url: "/products" }),
+    }),
+
+    getCartProduct: builder.mutation({
+      query: (email) => ({
+        url: `cart/${email}`,
+        method: "GET",
+      }),
     }),
   }),
 });
 
-export const { useGetProductQuery } = productApi;
+export const { useGetProductQuery, useGetCartProductMutation } = productApi;
