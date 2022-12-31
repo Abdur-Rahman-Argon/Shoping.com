@@ -51,27 +51,27 @@ const Login = () => {
     <div className="card mx-auto my-5 p-8 sm:p-3 card-compact sm:w-96 bg-base-100 shadow-2xl">
       <h1 className="text-center text-2xl font-bold">Please Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label class="label">
-          <span class="label-text text-xl font-bold">Email:</span>
+        <label className="label">
+          <span className="label-text text-xl font-bold">Email:</span>
         </label>
         <input
           {...register("email", { required: true })}
           className="input input-bordered my-1 input-primary w-full "
         />
-        <label class="label">
-          <span class="label-text-alt text-base font-semibold text-red-600">
+        <label className="label">
+          <span className="label-text-alt text-base font-semibold text-red-600">
             {errors.email?.type === "required" && "Email is required"}
           </span>
         </label>
-        <label class="label">
-          <span class="label-text text-xl font-bold">Password:</span>
+        <label className="label">
+          <span className="label-text text-xl font-bold">Password:</span>
         </label>
         <input
           {...register("password", { required: true })}
           className="input input-bordered my- input-primary w-full "
         />
-        <label class="label">
-          <span class="label-text-alt text-base font-semibold text-red-600">
+        <label className="label">
+          <span className="label-text-alt text-base font-semibold text-red-600">
             {errors.password?.type === "required" && "Password is required"}
           </span>
         </label>
@@ -91,7 +91,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
-      <div class="divider">OR</div>
+      <div className="divider">OR</div>
       <div>
         <SocialLogin></SocialLogin>
       </div>

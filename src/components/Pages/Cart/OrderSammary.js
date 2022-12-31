@@ -18,9 +18,9 @@ const OrderSummary = ({ myOrder }) => {
           } ease-in-out duration-100 `}
         >
           {!show ? (
-            <i class="fa-solid fa-angle-right"></i>
+            <i className="fa-solid fa-angle-right"></i>
           ) : (
-            <i class="fa-solid fa-angle-up"></i>
+            <i className="fa-solid fa-angle-up"></i>
           )}
         </button>
       </div>

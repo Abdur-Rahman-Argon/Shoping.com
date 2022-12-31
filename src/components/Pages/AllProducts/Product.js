@@ -51,7 +51,7 @@ const Product = ({ product }) => {
       Product: Product,
     };
 
-    fetch("https://frozen-retreat-64301.herokuapp.com/addToCart", {
+    fetch("http://localhost:5000/addToCart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -69,15 +69,15 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div class=" rounded-xl px-2 pt-2 pb-3 w-64  bg-gray-50 mx-auto my-3 hover:shadow-2xl shadow-md border-[1px]">
+    <div className=" rounded-xl px-2 pt-2 pb-3 w-64  bg-gray-50 mx-auto my-3 hover:shadow-2xl shadow-md border-[1px]">
       <Link to={`/productDetails/${product._id}`}>
         <figure>
           <img src={product.image} alt="product" className="w-32 mx-auto" />
         </figure>
       </Link>
-      <div class=" my-0 ">
+      <div className=" my-0 ">
         <Link to={`/productDetails/${product._id}`}>
-          <h2 class=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
+          <h2 className=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
             {product.productTitle}
           </h2>
         </Link>
@@ -95,14 +95,14 @@ const Product = ({ product }) => {
             <span>% save</span>
           </span>
         </div>
-        <div class=" flex items-center justify-between my-1">
+        <div className=" flex items-center justify-between my-1">
           <span className=" text-orange-500 text-sm">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            {/* <i class="fa-regular fa-star"></i> */}
-            <i class="fa-solid fa-star-half-stroke"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
+            {/* <i className="fa-regular fa-star"></i> */}
+            <i className="fa-solid fa-star-half-stroke"></i>
           </span>
           <span className="hover:text-violet-500 text-sm font-medium   text-blue-700 ">
             <a href=""> 79 Reviews</a>
@@ -116,13 +116,13 @@ const Product = ({ product }) => {
           className=" bg-lime-700 font-medium text-white px-4 py-[2px] rounded text-xs"
         >
           Add to Card
-          <i class=""></i>
+          <i className=""></i>
         </button>
         <button
           title="Quick View"
           className="bg-gray-300  hover:text-sky-500  py-1 px-2"
         >
-          <i class="fa-solid fa-eye"></i>
+          <i className="fa-solid fa-eye"></i>
         </button>
 
         {like ? (
@@ -131,7 +131,7 @@ const Product = ({ product }) => {
             onClick={removeLikeList}
             className="  py-1 px-2 font-bold bg-gray-300 hover:text-sky-700"
           >
-            <i class="fa-solid fa-heart text-sky-500"></i>
+            <i className="fa-solid fa-heart text-sky-500"></i>
           </button>
         ) : (
           <button
@@ -139,7 +139,7 @@ const Product = ({ product }) => {
             onClick={addLikeList}
             className="  py-1 px-2 font-bold bg-gray-300 hover:text-sky-700"
           >
-            <i class="fa-regular fa-heart"></i>
+            <i className="fa-regular fa-heart"></i>
           </button>
         )}
       </div>

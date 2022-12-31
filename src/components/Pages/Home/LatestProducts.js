@@ -9,21 +9,19 @@ const LatestProducts = () => {
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("https://frozen-retreat-64301.herokuapp.com/allProducts").then(
-      (res) => res.json()
-    )
+    fetch("http://localhost:5000/allProducts").then((res) => res.json())
   );
 
   if (isLoading) {
     return;
   }
 
-  const specialProducts = products.slice(-4); // three product
+  const specialProducts = products?.slice(-4); // three product
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {specialProducts.map((product) => (
+        {specialProducts?.map((product) => (
           <Product key={product._id} product={product}></Product>
         ))}
       </div>

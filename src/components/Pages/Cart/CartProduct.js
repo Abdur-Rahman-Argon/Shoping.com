@@ -8,10 +8,10 @@ const CartProduct = ({
   productList,
   setProductList,
 }) => {
-  const cartProduct = cartProducts.Product;
+  const cartProduct = cartProducts?.Product;
 
   const [quantity, setQuantity] = useState(cartProducts.ProductQuantity);
-  const [supTotal, setSupTotal] = useState(cartProduct.price * quantity);
+  const [supTotal, setSupTotal] = useState(cartProduct?.price * quantity);
   const [select, setSelect] = useState(false);
 
   const ordersItems = {
@@ -157,12 +157,12 @@ const CartProduct = ({
           </div>
 
           <button className="absolute top-0 px-3 hover:text-orange-700 right-0 lg:right-2 text-xl">
-            <i class="fa-solid fa-trash-can "></i>
+            <i className="fa-solid fa-trash-can "></i>
           </button>
         </div>
       </div>
 
-      <div class="divider"></div>
+      <div className="divider"></div>
     </div>
   );
 };

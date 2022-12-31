@@ -8,7 +8,7 @@
 
 //   useEffect(() => {
 //     seIsLoading(true);
-//     fetch(`https://frozen-retreat-64301.herokuapp.com/allProducts`)
+//     fetch(`http://localhost:5000/allProducts`)
 //       .then((res) => res.json())
 //       .then((data) => {
 //         setProducts(data);

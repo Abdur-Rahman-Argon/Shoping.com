@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase.init";
+import auth from "../firebase.init";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
@@ -31,36 +31,36 @@ const Navbar = () => {
           <button> Admin </button>
           <ul
             tabindex="8"
-            class="dropdown-content menu p-2 bg-gray-200 rounded"
+            className="dropdown-content menu p-2 bg-gray-200 rounded"
           >
             <li>
-              <Link to="/manageUser">All User</Link>
+              <Link to="/manage-user">All User</Link>
             </li>
             <li>
-              <Link to="/manageUser">Manage User</Link>
+              <Link to="/manage-user">Manage User</Link>
             </li>
             <li>
-              <Link to="/manageOrder">All Orders</Link>
+              <Link to="/manage-order">All Orders</Link>
             </li>
             <li>
-              <Link to="/manageOrder">Manage Orders</Link>
+              <Link to="/manage-order">Manage Orders</Link>
             </li>
             <li>
-              <Link to="/manageProduct">All Product</Link>
+              <Link to="/manage-product">All Product</Link>
             </li>
             <li>
-              <Link to="/manageProduct">Manage Product</Link>
+              <Link to="/manage-product">Manage Product</Link>
             </li>
             <li>
-              <Link to="/addProduct">Add Product</Link>
+              <Link to="/add-product">Add Product</Link>
             </li>
           </ul>
         </li>
       ) : (
         <>
           <li className="font-extrabold text-lg md:text-2xl text-gray-800  relative">
-            <Link to="/loveList">
-              <i class="fa-regular fa-heart "></i>
+            <Link to="/love-list">
+              <i className="fa-regular fa-heart "></i>
               {likeList ? (
                 <span className=" absolute text-xs font-bold px-[6px] py-[2px]   bg-[#A3E4D7]  text-gray-700 rounded-full bottom-[8px] right-[6px]">
                   {likeList?.length}
@@ -74,7 +74,7 @@ const Navbar = () => {
           </li>
           <li className="font-extrabold text-lg md:text-2xl text-gray-800  relative lg:mx-3 ">
             <Link to="/cart">
-              <i class="fa-solid fa-cart-flatbed-suitcase font-extrabold"></i>
+              <i className="fa-solid fa-cart-flatbed-suitcase font-extrabold"></i>
               {likeList ? (
                 <span className=" absolute text-xs font-bold px-[6px] py-[2px]   bg-[#A3E4D7]  text-gray-700 rounded-full bottom-[8px] right-[6px]">
                   {likeList?.length}
@@ -88,26 +88,30 @@ const Navbar = () => {
           </li>
         </>
       )}
+
       {/* user profile when user login/ or sign-up */}
       {user ? (
         <li tabindex="0" className="dropdown dropdown-end dropdown-hover">
           <button className="text-center text-sm md:text-xl text-gray-800 ">
-            <i class="fa-solid fa-user text-xl font-bold lg:text-base"></i>
+            <i className="fa-solid fa-user text-xl font-bold lg:text-base"></i>
           </button>
-          <ul tabindex="0" class={`menu dropdown-content p-2 bg-slate-200 `}>
+          <ul
+            tabindex="0"
+            className={`menu dropdown-content p-2 bg-slate-200 `}
+          >
             <li className="my-[2px]">
-              <Link to="/t">My Account</Link>
+              <Link to="/profile">My Account</Link>
             </li>
             {Admin ? null : (
               <>
                 <li className="my-[2px]">
-                  <Link to="/myOrder">My Orders</Link>
+                  <Link to="/my-order">My Orders</Link>
                 </li>
                 <li className="my-[2px]">
-                  <Link to="/t">Carts</Link>
+                  <Link to="/cart">Carts</Link>
                 </li>
                 <li className="my-[2px]">
-                  <Link to="/reviewAdd">Likes</Link>
+                  <Link to="/review-add">Likes</Link>
                 </li>
               </>
             )}
@@ -133,16 +137,16 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/allProduct">Shop</Link>
+        <Link to="/all-products">Shop</Link>
       </li>
 
       <li tabindex="8">
-        <button class="dropdown navbar-center">
-          Brand <i class="fa-solid fa-chevron-down ml-1"></i>
+        <button className="dropdown navbar-center">
+          Brand <i className="fa-solid fa-chevron-down ml-1"></i>
         </button>
         <ul
           tabindex="8"
-          class=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px]"
+          className=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px]"
         >
           <li>
             <Link to="/blog">Samsung</Link>
@@ -170,11 +174,14 @@ const Navbar = () => {
   //---------nav one title and search ber-----------//
   const navbar1 = (
     <>
-      <nav id="Contact" class="navbar flex justify-between py-0 lg:px-10 px-2">
-        <div class="flex w-60">
+      <nav
+        id="Contact"
+        className="navbar flex justify-between py-0 lg:px-10 px-2"
+      >
+        <div className="flex w-60">
           <a
             href="/"
-            class=" normal-case text-2xl md:text-4xl text-style text-[#1A5276] font-semibold hover:bg-white titleStyle"
+            className=" normal-case text-2xl md:text-4xl text-style text-[#1A5276] font-semibold hover:bg-white titleStyle"
           >
             Shoping.com
           </a>
@@ -206,24 +213,24 @@ const Navbar = () => {
                 placeholder="Search Items"
                 // value={''}
                 // {...register("firstName", { required: true })}
-                class=" border border-gray-300 border-r-0 border-l-0 rounded-none focus:outline-none md:w-[300px] lg:w-[450px] p-2  py-[11px]"
+                className=" border border-gray-300 border-r-0 border-l-0 rounded-none focus:outline-none md:w-[300px] lg:w-[450px] p-2  py-[11px]"
               />
               <button
                 type="submit"
                 value=""
-                class="border border-l-0 border-gray-300  rounded-full rounded-l-none focus:outline-none p-2 py-[11px]"
+                className="border border-l-0 border-gray-300  rounded-full rounded-l-none focus:outline-none p-2 py-[11px]"
               >
                 <span className="bg-slate-200 px-3 py-2 rounded-full">
-                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <i className="fa-solid fa-magnifying-glass"></i>
                 </span>
               </button>
             </div>
           </form>
         </div>
 
-        <div class="flex w-44 text-xs font-semibold">
+        <div className="flex w-44 text-xs font-semibold">
           <span className="mx-1">
-            <i class="fa-solid fa-phone"></i>
+            <i className="fa-solid fa-phone"></i>
           </span>
           <span className="mx-1">Hotline:</span>
           <span>+880179658000</span>
@@ -266,23 +273,23 @@ const Navbar = () => {
     </>
   );
 
-  //---------------- navber 2 categories menu and user --------//
+  //---------------- navbar 2 categories menu and user --------//
 
   const navbar2 = (
     <>
       <nav
         id="Contact"
-        class=" menu-style navbar items-center lg:px-16 px-2 py-0 border-b-[1px] border-gray-400 bg-teal-500   "
+        className=" menu-style navbar items-center lg:px-16 px-2 py-0 border-b-[1px] border-gray-400 bg-teal-500   "
       >
-        {/* navber start */}
-        <div class="flex navbar-start">
+        {/* navbar start */}
+        <div className="flex navbar-start">
           <ul>
             <li tabindex="1" className="dropdown dropdown-hover">
-              <button class=" py-4 lg:py-2 normal-case text-xs md:text-sm lg:text-lg text-style text-gray-700 font-semibold flex items-center cursor-pointer ">
-                <i class="fa-solid fa-ellipsis-vertical mx-[1px]"></i>
-                <i class="fa-solid fa-bars"></i>{" "}
+              <button className=" py-4 lg:py-2 normal-case text-xs md:text-sm lg:text-lg text-style text-gray-700 font-semibold flex items-center cursor-pointer ">
+                <i className="fa-solid fa-ellipsis-vertical mx-[1px]"></i>
+                <i className="fa-solid fa-bars"></i>{" "}
                 <span className=" mx-1">Catagories</span>
-                <i class="fa-solid fa-chevron-down "></i>
+                <i className="fa-solid fa-chevron-down "></i>
               </button>
 
               <ul
@@ -296,20 +303,20 @@ const Navbar = () => {
         </div>
 
         {/* Navbar center */}
-        <div class="navbar-center ">
+        <div className="navbar-center ">
           <div className="hidden md:flex text-sm">
-            <ul class="menu text-base menu-horizontal font-semibold gap-1 p-0">
+            <ul className="menu text-base menu-horizontal font-semibold gap-1 p-0">
               {navOption2}
             </ul>
           </div>
           {/* Menu option or small device */}
-          <div tabindex="4" class="dropdown md:hidden navbar-center">
-            <button class=" text-xs flex items-center py-4">
-              Menu <i class="fa-solid fa-chevron-down ml-1"></i>
+          <div tabindex="4" className="dropdown md:hidden navbar-center">
+            <button className=" text-xs flex items-center py-4">
+              Menu <i className="fa-solid fa-chevron-down ml-1"></i>
             </button>
             <ul
               tabindex="4"
-              class=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px] -left-32 "
+              className=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px] -left-32 "
             >
               {navOption2}
             </ul>
@@ -317,12 +324,12 @@ const Navbar = () => {
         </div>
 
         {/* Search button */}
-        <div class="navbar-center sm:ml-20 md:hidden">
-          <div class="dropdown">
-            <label tabindex="0" class="m-1">
-              <i class="fa-solid fa-magnifying-glass ml-1 mr-1 py-4"></i>
+        <div className="navbar-center sm:ml-20 md:hidden">
+          <div className="dropdown">
+            <label tabindex="0" className="m-1">
+              <i className="fa-solid fa-magnifying-glass ml-1 mr-1 py-4"></i>
             </label>
-            <div tabindex="0" class="dropdown-content -left-16 w-20 p-2">
+            <div tabindex="0" className="dropdown-content -left-16 w-20 p-2">
               <form>
                 <div className=" flex items-center">
                   <select
@@ -348,15 +355,15 @@ const Navbar = () => {
                     placeholder="Search Items"
                     // value={''}
                     // {...register("firstName", { required: true })}
-                    class=" border border-gray-300 border-r-0 border-l-0 rounded-none focus:outline-none w-[100px] px-1 text-xs  py-[5px]"
+                    className=" border border-gray-300 border-r-0 border-l-0 rounded-none focus:outline-none w-[100px] px-1 text-xs  py-[5px]"
                   />
                   <button
                     type="submit"
                     value=""
-                    class="border border-l-0 border-gray-300 bg-white rounded-full rounded-l-none focus:outline-none px-0 py-[1px]"
+                    className="border border-l-0 border-gray-300 bg-white rounded-full rounded-l-none focus:outline-none px-0 py-[1px]"
                   >
                     <span className="bg-slate-200 px-2 py-1 text-sm rounded-full">
-                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <i className="fa-solid fa-magnifying-glass"></i>
                     </span>
                   </button>
                 </div>
@@ -366,8 +373,8 @@ const Navbar = () => {
         </div>
 
         {/* navbar end */}
-        <div class=" navbar-end">
-          <ul class="menu text-xs menu-horizontal font-semibold gap-1 p-0">
+        <div className=" navbar-end">
+          <ul className="menu text-xs menu-horizontal font-semibold gap-1 p-0">
             {navOption1}
           </ul>
         </div>

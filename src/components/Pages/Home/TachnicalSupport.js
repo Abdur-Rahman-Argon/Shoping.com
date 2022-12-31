@@ -8,13 +8,13 @@ import website from "./../../../images/web-png-icon-10.jpg";
 const TachnicalSupport = () => {
   return (
     <div>
-      <div class="">
-        <div class=" flex items-center flex-col sm:flex-row-reverse md:gap-20">
+      <div className="">
+        <div className=" flex items-center flex-col sm:flex-row-reverse md:gap-20">
           {/* icon image */}
           <div className="flex-1">
             <img
               src={SupportImg}
-              class=" w-40 sm:w-72 lg:w-96 mx-auto rounded-lg "
+              className=" w-40 sm:w-72 lg:w-96 mx-auto rounded-lg "
               alt=""
             />
           </div>

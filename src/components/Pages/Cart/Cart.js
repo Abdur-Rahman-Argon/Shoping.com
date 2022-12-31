@@ -21,9 +21,9 @@ const Cart = () => {
     isLoading,
     refetch,
   } = useQuery("cartsection", () =>
-    fetch(
-      `https://frozen-retreat-64301.herokuapp.com/addToCart/${user.email}`
-    ).then((res) => res.json())
+    fetch(`http://localhost:5000/addToCart/${user.email}`).then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) {
@@ -57,7 +57,7 @@ const Cart = () => {
     };
 
     // order post api
-    fetch("https://frozen-retreat-64301.herokuapp.com/myOrder", {
+    fetch("http://localhost:5000/myOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -109,19 +109,12 @@ const Cart = () => {
               </div>
             </div>
 
-            <div class=" hidden lg:flex divider my-0"></div>
+            <div className=" hidden lg:flex divider my-0"></div>
 
             {/* single product  map */}
             <div>
               {cartItems?.map((cartProducts) => (
-                <CartProduct
-                  key={cartProducts._id}
-                  cartProducts={cartProducts}
-                  setSubTotal={setSubTotal}
-                  subTotal={subTotal}
-                  productList={productList}
-                  setProductList={setProductList}
-                ></CartProduct>
+                <></>
               ))}
             </div>
 
@@ -146,7 +139,7 @@ const Cart = () => {
         <div className="lg:flex-2 py-5 px-7 w-full mx-auto text-center bg-slate-50 shadow-md">
           <h1 className="text-2xl my-1 text-start font-semibold">Summary</h1>
 
-          <div class="divider mt-0 "></div>
+          <div className="divider mt-0 "></div>
 
           <div className="flex px-1  my-1 justify-between">
             <h1 className="text-base font-semibold">SubTotal :</h1>
@@ -176,7 +169,7 @@ const Cart = () => {
             </span>
           </div>
 
-          <div class="divider"></div>
+          <div className="divider"></div>
 
           <div className="flex px-1 my-1 justify-between">
             <h1 className="text-base font-semibold">Total price :</h1>
@@ -187,7 +180,7 @@ const Cart = () => {
               </span>
             </span>
           </div>
-          <div class="divider  "></div>
+          <div className="divider  "></div>
           <CouponCode></CouponCode>
 
           {/* order confirm btn */}

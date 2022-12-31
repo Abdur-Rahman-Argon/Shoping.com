@@ -18,9 +18,9 @@ const TrackingOrder = ({ orderInfo }) => {
               }`}
             >
               {paid ? (
-                <i class="fa-solid fa-circle-check"></i>
+                <i className="fa-solid fa-circle-check"></i>
               ) : (
-                <i class="fa-solid fa-ellipsis text-xl"></i>
+                <i className="fa-solid fa-ellipsis text-xl"></i>
               )}
             </span>
             <span
@@ -28,7 +28,7 @@ const TrackingOrder = ({ orderInfo }) => {
                 paid ? "bg-orange-400" : "bg-slate-400"
               }`}
             >
-              <i class="fa-solid fa-money-check-dollar"></i>
+              <i className="fa-solid fa-money-check-dollar"></i>
             </span>
           </span>
           <span
@@ -41,7 +41,7 @@ const TrackingOrder = ({ orderInfo }) => {
                 packaging ? "bg-orange-400" : "bg-slate-400"
               }`}
             >
-              <i class="fa-solid fa-box-open"></i>
+              <i className="fa-solid fa-box-open"></i>
             </span>
           </span>
           <span
@@ -54,7 +54,7 @@ const TrackingOrder = ({ orderInfo }) => {
                 Courier ? "bg-orange-400" : "bg-slate-400"
               }`}
             >
-              <i class="fa-solid fa-truck-fast"></i>
+              <i className="fa-solid fa-truck-fast"></i>
             </span>
           </span>
           <span
@@ -67,7 +67,7 @@ const TrackingOrder = ({ orderInfo }) => {
                 shipped ? "bg-orange-400" : "bg-slate-400"
               }`}
             >
-              <i class="fa-solid fa-calendar-check"></i>
+              <i className="fa-solid fa-calendar-check"></i>
             </span>
           </span>
         </div>

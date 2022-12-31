@@ -45,7 +45,7 @@ const SignUp = () => {
       createUserWithEmailAndPassword(email, password);
       await updateProfile(displayName);
 
-      fetch(`https://frozen-retreat-64301.herokuapp.com/user/${email}`, {
+      fetch(`http://localhost:5000/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -65,45 +65,47 @@ const SignUp = () => {
       <div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label class="label">
-              <span class="label-text text-xl font-bold">Name:</span>
+            <label className="label">
+              <span className="label-text text-xl font-bold">Name:</span>
             </label>
             <input
               {...register("name", { required: true })}
               className="input input-bordered my-2 input-primary w-full "
             />
-            <label class="label">
-              <span class="label-text-alt text-base font-semibold text-red-600">
+            <label className="label">
+              <span className="label-text-alt text-base font-semibold text-red-600">
                 {errors.name?.type === "required" && "Name is required"}
               </span>
             </label>
           </div>
 
           <div>
-            <label class="label">
-              <span class="label-text text-xl font-bold">Email:</span>
+            <label className="label">
+              <span className="label-text text-xl font-bold">Email:</span>
             </label>
             <input
               {...register("email", { required: true })}
               className="input input-bordered my-2 input-primary w-full "
             />
-            <label class="label">
-              <span class="label-text-alt text-base font-semibold text-red-600">
+            <label className="label">
+              <span className="label-text-alt text-base font-semibold text-red-600">
                 {errors.email?.type === "required" && "Email is required"}
               </span>
             </label>
           </div>
 
           <div>
-            <label class="label">
-              <span class="label-text text-xl font-bold">New Password:</span>
+            <label className="label">
+              <span className="label-text text-xl font-bold">
+                New Password:
+              </span>
             </label>
             <input
               {...register("new_password", { required: true })}
               className="input input-bordered my-2 input-primary w-full "
             />
-            <label class="label">
-              <span class="label-text-alt text-base font-semibold text-red-600">
+            <label className="label">
+              <span className="label-text-alt text-base font-semibold text-red-600">
                 {errors.new_password?.type === "required" &&
                   "New Password is required"}
               </span>
@@ -111,8 +113,8 @@ const SignUp = () => {
           </div>
 
           <div>
-            <label class="label">
-              <span class="label-text text-xl font-bold">
+            <label className="label">
+              <span className="label-text text-xl font-bold">
                 Confirm Password:
               </span>
             </label>
@@ -120,8 +122,8 @@ const SignUp = () => {
               {...register("confirm_password", { required: true })}
               className="input input-bordered my-2 input-primary w-full "
             />
-            <label class="label">
-              <span class="label-text-alt text-base font-semibold text-red-600">
+            <label className="label">
+              <span className="label-text-alt text-base font-semibold text-red-600">
                 {errors.confirm_password?.type === "required" &&
                   "confirm Password is required"}
               </span>
@@ -145,7 +147,7 @@ const SignUp = () => {
           </p>
         </div>
       </div>
-      <div class="divider">OR</div>
+      <div className="divider">OR</div>
       <div>
         <SocialLogin></SocialLogin>
       </div>

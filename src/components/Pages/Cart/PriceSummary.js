@@ -17,7 +17,7 @@ const PriceSummary = ({ myOrder }) => {
         <span className="text-base font-medium">{shippingFee}</span>
       </div>
 
-      <div class="divider  "></div>
+      <div className="divider  "></div>
 
       <div className="flex px-1 my-1 justify-between">
         <span className="text-base font-medium">Total price :</span>

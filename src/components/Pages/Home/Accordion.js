@@ -15,7 +15,7 @@ const Accordion = () => {
         } hover:text-sky-500`}
       >
         <h1 className="text-base font-semibold">
-          <i class="fa-solid fa-hand-point-right"></i> Question ?
+          <i className="fa-solid fa-hand-point-right"></i> Question ?
         </h1>
         <button
           className={`text-lg mx-3 font-bold ${
@@ -23,9 +23,9 @@ const Accordion = () => {
           } ease-in-out duration-300 rounded-full border-[2px] m-1 hover:border-sky-500 px-[6px]`}
         >
           {!show ? (
-            <i class="fa-solid fa-plus"></i>
+            <i className="fa-solid fa-plus"></i>
           ) : (
-            <i class="fa-solid fa-minus"></i>
+            <i className="fa-solid fa-minus"></i>
           )}
         </button>
       </div>

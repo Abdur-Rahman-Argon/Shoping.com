@@ -21,14 +21,14 @@ const LoveList = () => {
     <div>
       <div>
         <h1 className=" text-2xl font-bold text-center my-5 border-b-[4px] border-gray-600 w-52 mx-auto">
-          <i class="fa-solid fa-heart text-sky-500"></i> My WishList
-          <i class="fa-solid fa-heart text-sky-500 ml-2"></i>
+          <i className="fa-solid fa-heart text-sky-500"></i> My WishList
+          <i className="fa-solid fa-heart text-sky-500 ml-2"></i>
         </h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {myLoveList.map((product) => (
           <>
-            <div class=" rounded-xl px-2 pt-2 pb-3 w-68  bg-gray-200 mx-auto my-3 hover:shadow-xl">
+            <div className=" rounded-xl px-2 pt-2 pb-3 w-68  bg-gray-200 mx-auto my-3 hover:shadow-xl">
               <Link to={`/productDetails/${product._id}`}>
                 <figure>
                   <img
@@ -38,9 +38,9 @@ const LoveList = () => {
                   />
                 </figure>
               </Link>
-              <div class=" my-0 ">
+              <div className=" my-0 ">
                 <Link to={`/productDetails/${product._id}`}>
-                  <h2 class=" mt-2 text-xl text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
+                  <h2 className=" mt-2 text-xl text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
                     {product.productTitle}
                   </h2>
                 </Link>
@@ -58,14 +58,14 @@ const LoveList = () => {
                     <span>% save</span>
                   </span>
                 </div>
-                <div class=" flex items-center justify-between my-1">
+                <div className=" flex items-center justify-between my-1">
                   <span className=" text-orange-500 text-sm">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    {/* <i class="fa-regular fa-star"></i> */}
-                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    {/* <i className="fa-regular fa-star"></i> */}
+                    <i className="fa-solid fa-star-half-stroke"></i>
                   </span>
                   <span className="hover:text-violet-500 text-sm font-medium   text-blue-700 ">
                     <a href=""> 79 Reviews</a>
@@ -85,7 +85,7 @@ const LoveList = () => {
                   onClick={""}
                   className="  py-1 px-2 font-bold bg-gray-300 hover:text-sky-700"
                 >
-                  <i class="fa-solid fa-heart text-sky-500"></i>
+                  <i className="fa-solid fa-heart text-sky-500"></i>
                 </button>
               </div>
             </div>

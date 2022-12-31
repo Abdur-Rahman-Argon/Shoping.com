@@ -18,9 +18,9 @@ const ProductDetails = () => {
     isLoading,
     refetch,
   } = useQuery("AllProduct", () =>
-    fetch(
-      `https://frozen-retreat-64301.herokuapp.com/allProduct/${productId}`
-    ).then((res) => res.json())
+    fetch(`http://localhost:5000/allProduct/${productId}`).then((res) =>
+      res.json()
+    )
   );
 
   if (isLoading) {
@@ -96,7 +96,7 @@ const ProductDetails = () => {
       Product: Product,
     };
 
-    fetch("https://frozen-retreat-64301.herokuapp.com/addToCart", {
+    fetch("http://localhost:5000/addToCart", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -141,14 +141,14 @@ const ProductDetails = () => {
                 </span>
               </h1>
               <div>
-                <div class=" flex items-center justify-between md:gap-32 my-1">
+                <div className=" flex items-center justify-between md:gap-32 my-1">
                   <span className=" text-orange-500 text-sm">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    {/* <i class="fa-regular fa-star"></i> */}
-                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    <i className="fa-solid fa-star"></i>
+                    {/* <i className="fa-regular fa-star"></i> */}
+                    <i className="fa-solid fa-star-half-stroke"></i>
                   </span>
                   <span className="hover:text-violet-500 text-sm font-medium   text-blue-700 ">
                     <a href="p"> 79 Reviews</a>
@@ -222,7 +222,7 @@ const ProductDetails = () => {
                   onClick={removeLikeList}
                   className="  py-1 px-2 font-bold bg-gray-300 hover:text-sky-700"
                 >
-                  <i class="fa-solid fa-heart text-sky-500"></i>
+                  <i className="fa-solid fa-heart text-sky-500"></i>
                 </button>
               ) : (
                 <button
@@ -230,7 +230,7 @@ const ProductDetails = () => {
                   onClick={addLikeList}
                   className="  py-1 px-2 font-bold bg-gray-300 hover:text-sky-700"
                 >
-                  <i class="fa-regular fa-heart"></i>
+                  <i className="fa-regular fa-heart"></i>
                 </button>
               )}
             </div>

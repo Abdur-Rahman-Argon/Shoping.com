@@ -9,9 +9,7 @@ const SpecialProduct = () => {
     isLoading,
     refetch,
   } = useQuery("product", () =>
-    fetch("https://frozen-retreat-64301.herokuapp.com/allProducts").then(
-      (res) => res.json()
-    )
+    fetch("http://localhost:5000/allProducts").then((res) => res.json())
   );
 
   if (isLoading) {
