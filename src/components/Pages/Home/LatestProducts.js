@@ -1,20 +1,25 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Product from "../AllProducts/Product";
+import { useGetProductQuery } from "../../../features/api/apiSlice";
 
 const LatestProducts = () => {
   //product load from data base
-  const {
-    data: products,
-    isLoading,
-    refetch,
-  } = useQuery("product", () =>
-    fetch("http://localhost:5000/allProducts").then((res) => res.json())
-  );
+  // const {
+  //   data: products,
+  //   isLoading,
+  //   refetch,
+  // } = useQuery("product", () =>
+  //   fetch("http://localhost:5000/products").then((res) => res.json())
+  // );
+  const { data, isLoading, isError, error } = useGetProductQuery();
 
   if (isLoading) {
-    return;
+    return <p> loading ..</p>;
   }
+
+  const products = data;
+  // console.log(data);
 
   const specialProducts = products?.slice(-4); // three product
 

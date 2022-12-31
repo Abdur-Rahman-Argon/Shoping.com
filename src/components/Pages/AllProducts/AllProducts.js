@@ -2,26 +2,16 @@ import React from "react";
 import { useQuery } from "react-query";
 import useProduct from "../../utilites/useProduct";
 import Product from "./Product";
+import { useGetProductQuery } from "../../../features/api/apiSlice";
 
 const AllProducts = () => {
-  // all product  load
-  const {
-    data: products,
-    isLoading,
-    refetch,
-  } = useQuery("product", () =>
-    fetch("http://localhost:5000/allProducts").then((res) => res.json())
-  );
-
-  // const [products, isLoading] = useProduct();
+  const { data, isLoading, isError, error } = useGetProductQuery();
 
   if (isLoading) {
-    return;
+    return <p> loading ..</p>;
   }
 
-  // if (products) {
-  //   console.log(products);
-  // }
+  const products = data;
 
   return (
     <div>
