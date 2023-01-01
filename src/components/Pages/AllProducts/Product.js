@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
+import { useAddToCartMutation } from "../../../features/api/apiSlice";
 
 const Product = ({ product }) => {
   const [like, setLike] = useState(false);
@@ -10,6 +11,13 @@ const Product = ({ product }) => {
   const currentPrice = parseInt(
     product.price - product.price / product.discount
   );
+
+  const [addProduct, { isLoading, isSuccess, isError, error }] =
+    useAddToCartMutation();
+
+  if (isSuccess) {
+    alert("Successfully add to Cart");
+  }
 
   const addLikeList = () => {
     console.log(product);
@@ -36,8 +44,6 @@ const Product = ({ product }) => {
       const removeItems = beforeWishList.find(
         (element) => element._id === product._id
       );
-      //arr.find(o => o.name === 'string 1');
-      //arr.filter(item => item !== value)
       const likeList = beforeWishList.filter((item) => item !== removeItems);
       localStorage.setItem("likeList", JSON.stringify(likeList));
     }
@@ -46,37 +52,23 @@ const Product = ({ product }) => {
   const addToCart = () => {
     const addedProduct = {
       userName: user.displayName,
-      email: user.email,
+      email: user?.email,
       ProductQuantity: "1",
-      Product: Product,
+      Product: product,
     };
 
-    fetch("http://localhost:5000/addToCart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addedProduct),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        if (result.success === true) {
-          Navigate("/");
-          toast("Successfully add to Cart");
-        }
-      });
+    addProduct(addedProduct);
   };
 
   return (
     <div className=" rounded-xl px-2 pt-2 pb-3 w-64  bg-gray-50 mx-auto my-3 hover:shadow-2xl shadow-md border-[1px]">
-      <Link to={`/productDetails/${product._id}`}>
+      <Link to={`/product-details/${product._id}`}>
         <figure>
           <img src={product.image} alt="product" className="w-32 mx-auto" />
         </figure>
       </Link>
       <div className=" my-0 ">
-        <Link to={`/productDetails/${product._id}`}>
+        <Link to={`/product-details/${product._id}`}>
           <h2 className=" mt-2 text-lg text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
             {product.productTitle}
           </h2>

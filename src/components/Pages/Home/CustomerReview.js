@@ -7,7 +7,7 @@ const CustomerReview = () => {
     <div className=" w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-around items-end gap-5">
       {/* review map */}
       {reviews.map((review) => (
-        <div className="card w-72 p-5 bg-base-100 shadow-xl">
+        <div key={review} className="card w-72 p-5 bg-base-100 shadow-xl">
           <div className="flex justify-between items-center">
             <div className="flex items-center ">
               {/* customer image */}

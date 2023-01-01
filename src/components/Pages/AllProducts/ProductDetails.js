@@ -4,6 +4,10 @@ import { useQuery } from "react-query";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "./../../../firebase.init";
+import {
+  useAddToCartMutation,
+  useGetProductQuery,
+} from "../../../features/api/apiSlice";
 
 const ProductDetails = () => {
   const [user] = useAuthState(auth);
@@ -12,24 +16,15 @@ const ProductDetails = () => {
   const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
 
-  // single product load from api
-  const {
-    data: Product,
-    isLoading,
-    refetch,
-  } = useQuery("AllProduct", () =>
-    fetch(`http://localhost:5000/allProduct/${productId}`).then((res) =>
-      res.json()
-    )
-  );
+  const [addProduct] = useAddToCartMutation();
+
+  const { data, isLoading, isError, error } = useGetProductQuery();
 
   if (isLoading) {
-    return;
+    return <p> loading ..</p>;
   }
 
-  // if (user) {
-  //   console.log(user.displayName, user.email);
-  // }
+  const Product = data.find((p) => p._id === productId);
 
   // positive  quantity add
   const addPositive = () => {
@@ -51,7 +46,7 @@ const ProductDetails = () => {
     }
   };
 
-  //  //  like list add on local storage
+  //  like list add on local storage
   const addLikeList = () => {
     setLike(true);
     const wishList = [];
@@ -85,32 +80,34 @@ const ProductDetails = () => {
   };
 
   const currentPrice = parseInt(
-    Product.price - Product.price / Product.discount
+    Product?.price - Product?.price / Product?.discount
   );
 
   const addToCart = () => {
     const addedProduct = {
       userName: user.displayName,
-      email: user.email,
+      email: user?.email,
       ProductQuantity: quantity,
       Product: Product,
     };
 
-    fetch("http://localhost:5000/addToCart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addedProduct),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        if (result.success === true) {
-          navigate("/");
-          toast("Successfully add to Cart");
-        }
-      });
+    addProduct(addedProduct);
+
+    // fetch("http://localhost:5000/addToCart", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(addedProduct),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //     if (result.success === true) {
+    //       navigate("/");
+    //       toast("Successfully add to Cart");
+    //     }
+    //   });
   };
 
   const buyNow = () => {};
@@ -166,11 +163,11 @@ const ProductDetails = () => {
             <div className=" flex items-center gap-4">
               <h2 className="font-semibold text-lg">Price:</h2>
               <h2 className="text-base font-bold text-red-500">
-                {currentPrice}
+                {"currentPrice"}
                 <span className=" text-lg font-[800]">৳</span>
               </h2>
               <h2 className="text-sm font-semibold line-through text-gray-400">
-                {Product.price}
+                {Product?.price}
               </h2>
               <span className="text-xs font-medium bg-green-600 rounded text-white px-2 py-1">
                 {Product.discount}

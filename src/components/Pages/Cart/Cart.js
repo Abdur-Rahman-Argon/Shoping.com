@@ -16,27 +16,17 @@ const Cart = () => {
   const [productList, setProductList] = useState([]);
   const navigate = useNavigate();
 
-  // cart product load
-  // const {
-  //   data: cartItems,
-  //   isLoading,
-  //   refetch,
-  // } = useQuery("cartsection", () =>
-  //   fetch(`http://localhost:5000/addToCart/${user.email}`).then((res) =>
-  //     res.json()
-  //   )
-  // );
   const [getCartProduct, { isLoading, data }] = useGetCartProductMutation();
 
   useEffect(() => {
-    getCartProduct(user.email);
-  }, [user]);
+    getCartProduct(user?.email);
+  }, [user, getCartProduct]);
 
   if (isLoading) {
     return;
   }
-
   const cartItems = data;
+
   // price calculate
   const grandTotal = subTotal;
   const tax = grandTotal * 0.15;
@@ -51,7 +41,7 @@ const Cart = () => {
     //
     const orderInformation = {
       customerName: user.displayName,
-      customerEmail: user.email,
+      customerEmail: user?.email,
       phoneNumber: "",
       shippingAddress: "",
       orderPlacedDate: date,
@@ -116,13 +106,13 @@ const Cart = () => {
               </div>
             </div>
 
-            <div class=" hidden lg:flex divider my-0"></div>
+            <div className=" hidden lg:flex divider my-0"></div>
 
             {/* single product  map */}
             <div>
               {cartItems?.map((cartProducts) => (
                 <CartProduct
-                  key={cartProducts._id}
+                  key={cartProducts?._id}
                   cartProducts={cartProducts}
                   setSubTotal={setSubTotal}
                   subTotal={subTotal}
@@ -153,7 +143,7 @@ const Cart = () => {
         <div className="lg:flex-2 py-5 px-7 w-full mx-auto text-center bg-slate-50 shadow-md">
           <h1 className="text-2xl my-1 text-start font-semibold">Summary</h1>
 
-          <div class="divider mt-0 "></div>
+          <div className="divider mt-0 "></div>
 
           <div className="flex px-1  my-1 justify-between">
             <h1 className="text-base font-semibold">SubTotal :</h1>
@@ -183,7 +173,7 @@ const Cart = () => {
             </span>
           </div>
 
-          <div class="divider"></div>
+          <div className="divider"></div>
 
           <div className="flex px-1 my-1 justify-between">
             <h1 className="text-base font-semibold">Total price :</h1>
@@ -194,7 +184,7 @@ const Cart = () => {
               </span>
             </span>
           </div>
-          <div class="divider  "></div>
+          <div className="divider  "></div>
           <CouponCode></CouponCode>
 
           {/* order confirm btn */}

@@ -82,7 +82,7 @@ const PaymentCard = ({ myOrder }) => {
             card: card,
             billing_details: {
               name: user.userName,
-              email: user.email,
+              email: user?.email,
             },
           },
         });

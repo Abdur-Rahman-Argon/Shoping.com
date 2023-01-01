@@ -1,21 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useGetProductDetailsMutation } from "../../../features/api/apiSlice";
 
 const LoveList = () => {
   const myLoveList = JSON.parse(localStorage.getItem("likeList"));
-
-  //   const removeLikeList = () => {
-  //     const beforeWishList = JSON.parse(localStorage.getItem("likeList"));
-  //     if (beforeWishList) {
-  //       const removeItems = beforeWishList.find(
-  //         (element) => element._id === Product._id
-  //       );
-  //       //arr.find(o => o.name === 'string 1');
-  //       //arr.filter(item => item !== value)
-  //       const likeList = beforeWishList.filter((item) => item !== removeItems);
-  //       localStorage.setItem("likeList", JSON.stringify(likeList));
-  //     }
-  //   };
 
   return (
     <div>
@@ -26,10 +14,10 @@ const LoveList = () => {
         </h1>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {myLoveList.map((product) => (
+        {myLoveList?.map((product) => (
           <>
             <div className=" rounded-xl px-2 pt-2 pb-3 w-68  bg-gray-200 mx-auto my-3 hover:shadow-xl">
-              <Link to={`/productDetails/${product._id}`}>
+              <Link to={`/product-details/${product._id}`}>
                 <figure>
                   <img
                     src={product.image}
@@ -39,7 +27,7 @@ const LoveList = () => {
                 </figure>
               </Link>
               <div className=" my-0 ">
-                <Link to={`/productDetails/${product._id}`}>
+                <Link to={`/product-details/${product._id}`}>
                   <h2 className=" mt-2 text-xl text-gray-600 hover:text-blue-600 cursor-pointer font-semibold">
                     {product.productTitle}
                   </h2>
@@ -97,3 +85,30 @@ const LoveList = () => {
 };
 
 export default LoveList;
+
+//   const removeLikeList = () => {
+//     const beforeWishList = JSON.parse(localStorage.getItem("likeList"));
+//     if (beforeWishList) {
+//       const removeItems = beforeWishList.find(
+//         (element) => element._id === Product._id
+//       );
+//       //arr.find(o => o.name === 'string 1');
+//       //arr.filter(item => item !== value)
+//       const likeList = beforeWishList.filter((item) => item !== removeItems);
+//       localStorage.setItem("likeList", JSON.stringify(likeList));
+//     }
+//   };
+
+// const [getProduct, { isLoading: loading, data: product }] =
+// useGetProductDetailsMutation();
+// const id = "62f88011dff0061b8419f102";
+
+// useEffect(() => {
+// getProduct(id);
+// }, [id, getProduct]);
+
+// if (loading) {
+// return;
+// }
+
+// console.log(product);

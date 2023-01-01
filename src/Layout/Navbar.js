@@ -4,11 +4,18 @@ import auth from "../firebase.init";
 import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
+import { useGetCartProductMutation } from "../features/api/apiSlice";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [user, loading, error] = useAuthState(auth);
   const [Admin, setAdmin] = useState(false);
   const [likeList, setLikeList] = useState(false);
+
+  const [getCartProduct, { isLoading, data }] = useGetCartProductMutation();
+
+  useEffect(() => {
+    getCartProduct(user?.email);
+  }, [user]);
 
   //logOut button
   const logout = () => {
@@ -27,10 +34,10 @@ const Navbar = () => {
   const navOption1 = (
     <>
       {Admin ? (
-        <li tabindex="8" className="dropdown dropdown-hover mr-5 lg:mr-10">
+        <li tabIndex="8" className="dropdown dropdown-hover mr-5 lg:mr-10">
           <button> Admin </button>
           <ul
-            tabindex="8"
+            tabIndex="8"
             className="dropdown-content menu p-2 bg-gray-200 rounded"
           >
             <li>
@@ -75,9 +82,9 @@ const Navbar = () => {
           <li className="font-extrabold text-lg md:text-2xl text-gray-800  relative lg:mx-3 ">
             <Link to="/cart">
               <i className="fa-solid fa-cart-flatbed-suitcase font-extrabold"></i>
-              {likeList ? (
+              {data ? (
                 <span className=" absolute text-xs font-bold px-[6px] py-[2px]   bg-[#A3E4D7]  text-gray-700 rounded-full bottom-[8px] right-[6px]">
-                  {likeList?.length}
+                  {data?.length}
                 </span>
               ) : (
                 <span className=" absolute text-xs font-bold px-[6px] py-[2px]   bg-[#A3E4D7]  text-gray-700 rounded-full bottom-[8px] right-[6px]">
@@ -91,12 +98,12 @@ const Navbar = () => {
 
       {/* user profile when user login/ or sign-up */}
       {user ? (
-        <li tabindex="0" className="dropdown dropdown-end dropdown-hover">
+        <li tabIndex="0" className="dropdown dropdown-end dropdown-hover">
           <button className="text-center text-sm md:text-xl text-gray-800 ">
             <i className="fa-solid fa-user text-xl font-bold lg:text-base"></i>
           </button>
           <ul
-            tabindex="0"
+            tabIndex="0"
             className={`menu dropdown-content p-2 bg-slate-200 `}
           >
             <li className="my-[2px]">
@@ -140,12 +147,12 @@ const Navbar = () => {
         <Link to="/all-products">Shop</Link>
       </li>
 
-      <li tabindex="8">
+      <li tabIndex="8">
         <button className="dropdown navbar-center">
           Brand <i className="fa-solid fa-chevron-down ml-1"></i>
         </button>
         <ul
-          tabindex="8"
+          tabIndex="8"
           className=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px]"
         >
           <li>
@@ -191,22 +198,57 @@ const Navbar = () => {
           <form>
             <div className=" flex items-center">
               <select
+                value={"DEFAULT"}
+                defaultValue={"allCategory"}
                 name=""
                 id=""
+                onChange={props.onChange}
                 className="input select-bordered  border rounded-full rounded-r-none focus:outline-none px-2 text-xs font-bold"
               >
-                <option value="allCategory" selected>
+                <option
+                  id="DEFAULT"
+                  name="category"
+                  value="allCategory"
+                  selected
+                >
                   All Category
                 </option>
-                <option value="Phone"> Phone</option>
-                <option value="Microphone"> Microphone</option>
-                <option value="Tablet"> Tablet</option>
-                <option value="Monitor"> Monitor</option>
-                <option value="Laptop"> Laptop</option>
-                <option value="Router"> Router</option>
-                <option value="Headphone"> Headphone</option>
-                <option value="refrigerator"> refrigerator</option>
-                <option value="conditioner"> conditioner</option>
+                <option id="category" name="category" value="Phone">
+                  {" "}
+                  Phone
+                </option>
+                <option id="category" name="category" value="Microphone">
+                  {" "}
+                  Microphone
+                </option>
+                <option id="category" name="category" value="Tablet">
+                  {" "}
+                  Tablet
+                </option>
+                <option id="category" name="category" value="Monitor">
+                  {" "}
+                  Monitor
+                </option>
+                <option id="category" name="category" value="Laptop">
+                  {" "}
+                  Laptop
+                </option>
+                <option id="category" name="category" value="Router">
+                  {" "}
+                  Router
+                </option>
+                <option id="category" name="category" value="Headphone">
+                  {" "}
+                  Headphone
+                </option>
+                <option id="category" name="category" value="refrigerator">
+                  {" "}
+                  refrigerator
+                </option>
+                <option id="category" name="category" value="conditioner">
+                  {" "}
+                  conditioner
+                </option>
               </select>
               <input
                 type="text"
@@ -284,7 +326,7 @@ const Navbar = () => {
         {/* navbar start */}
         <div className="flex navbar-start">
           <ul>
-            <li tabindex="1" className="dropdown dropdown-hover">
+            <li tabIndex="1" className="dropdown dropdown-hover">
               <button className=" py-4 lg:py-2 normal-case text-xs md:text-sm lg:text-lg text-style text-gray-700 font-semibold flex items-center cursor-pointer ">
                 <i className="fa-solid fa-ellipsis-vertical mx-[1px]"></i>
                 <i className="fa-solid fa-bars"></i>{" "}
@@ -293,7 +335,7 @@ const Navbar = () => {
               </button>
 
               <ul
-                tabindex="1"
+                tabIndex="1"
                 className=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-52 font-bold text-sm"
               >
                 {catagoriesOption2}
@@ -310,12 +352,12 @@ const Navbar = () => {
             </ul>
           </div>
           {/* Menu option or small device */}
-          <div tabindex="4" className="dropdown md:hidden navbar-center">
+          <div tabIndex="4" className="dropdown md:hidden navbar-center">
             <button className=" text-xs flex items-center py-4">
               Menu <i className="fa-solid fa-chevron-down ml-1"></i>
             </button>
             <ul
-              tabindex="4"
+              tabIndex="4"
               className=" menu dropdown-content bg-slate-200  rounded p-2 shadow w-40 text-sm gap-[2px] -left-32 "
             >
               {navOption2}
@@ -326,10 +368,10 @@ const Navbar = () => {
         {/* Search button */}
         <div className="navbar-center sm:ml-20 md:hidden">
           <div className="dropdown">
-            <label tabindex="0" className="m-1">
+            <label tabIndex="0" className="m-1">
               <i className="fa-solid fa-magnifying-glass ml-1 mr-1 py-4"></i>
             </label>
-            <div tabindex="0" className="dropdown-content -left-16 w-20 p-2">
+            <div tabIndex="0" className="dropdown-content -left-16 w-20 p-2">
               <form>
                 <div className=" flex items-center">
                   <select
@@ -337,18 +379,50 @@ const Navbar = () => {
                     id=""
                     className=" py-[5px] px-2 text-xs border rounded-full rounded-r-none focus:outline-none font-medium "
                   >
-                    <option value="allCategory" selected>
+                    <option
+                      id="category"
+                      name="category"
+                      value="allCategory"
+                      selected
+                    >
                       All Category
                     </option>
-                    <option value="Phone"> Phone</option>
-                    <option value="Microphone"> Microphone</option>
-                    <option value="Tablet"> Tablet</option>
-                    <option value="Monitor"> Monitor</option>
-                    <option value="Laptop"> Laptop</option>
-                    <option value="Router"> Router</option>
-                    <option value="Headphone"> Headphone</option>
-                    <option value="refrigerator"> refrigerator</option>
-                    <option value="conditioner"> conditioner</option>
+                    <option id="category" name="category" value="Phone">
+                      {" "}
+                      Phone
+                    </option>
+                    <option id="category" name="category" value="Microphone">
+                      {" "}
+                      Microphone
+                    </option>
+                    <option id="category" name="category" value="Tablet">
+                      {" "}
+                      Tablet
+                    </option>
+                    <option id="category" name="category" value="Monitor">
+                      {" "}
+                      Monitor
+                    </option>
+                    <option id="category" name="category" value="Laptop">
+                      {" "}
+                      Laptop
+                    </option>
+                    <option id="category" name="category" value="Router">
+                      {" "}
+                      Router
+                    </option>
+                    <option id="category" name="category" value="Headphone">
+                      {" "}
+                      Headphone
+                    </option>
+                    <option id="category" name="category" value="refrigerator">
+                      {" "}
+                      refrigerator
+                    </option>
+                    <option id="category" name="category" value="conditioner">
+                      {" "}
+                      conditioner
+                    </option>
                   </select>
                   <input
                     type="text"

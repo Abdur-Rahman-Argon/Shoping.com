@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useDeleteCartProductMutation } from "../../../features/api/apiSlice";
 
 const CartProduct = ({
   cartProducts,
@@ -14,20 +15,27 @@ const CartProduct = ({
   const [supTotal, setSupTotal] = useState(cartProduct?.price * quantity);
   const [select, setSelect] = useState(false);
 
+  const [deleteCartProduct, { isLoading, isSuccess }] =
+    useDeleteCartProductMutation();
+
+  if (isSuccess) {
+    alert("deleted product");
+  }
+
   const ordersItems = {
-    _id: cartProduct._id,
+    _id: cartProduct?._id,
     quantity,
     supTotal,
     productInfo: {
-      productID: cartProduct._id,
-      productTitle: cartProduct.productTitle,
-      brand: cartProduct.productBrand,
-      price: cartProduct.price,
-      discount: cartProduct.discount,
-      image: cartProduct.image,
-      brandName: cartProduct.brandName,
-      category: cartProduct.category,
-      stock: cartProduct.stock,
+      productID: cartProduct?._id,
+      productTitle: cartProduct?.productTitle,
+      brand: cartProduct?.productBrand,
+      price: cartProduct?.price,
+      discount: cartProduct?.discount,
+      image: cartProduct?.image,
+      brandName: cartProduct?.brandName,
+      category: cartProduct?.category,
+      stock: cartProduct?.stock,
     },
   };
 
@@ -35,7 +43,7 @@ const CartProduct = ({
     if (quantity < 5) {
       const sum1 = subTotal - supTotal;
       const plus = quantity + 1;
-      const SubTotal = cartProduct.price * plus;
+      const SubTotal = cartProduct?.price * plus;
       setQuantity(plus);
       setSupTotal(SubTotal);
       if (select) {
@@ -52,7 +60,7 @@ const CartProduct = ({
     if (quantity > 1) {
       const sum1 = subTotal - supTotal;
       const minus = quantity - 1;
-      const SubTotal = cartProduct.price * minus;
+      const SubTotal = cartProduct?.price * minus;
       setSupTotal(SubTotal);
       setQuantity(minus);
       // setUpdate(true);
@@ -104,20 +112,20 @@ const CartProduct = ({
           </div>
           <div>
             <img
-              src={cartProduct.image}
+              src={cartProduct?.image}
               alt="Shoes"
               className=" w-10 lg:w-16 mx-auto py-5"
             />
           </div>
           <div className="w-80 text-lg font-semibold">
-            <h1>{cartProduct.productTitle}</h1>
+            <h1>{cartProduct?.productTitle}</h1>
           </div>
         </div>
 
         <div className=" flex gap-10 lg:gap-11 items-center text-base font-medium justify-around">
           <div>
             <h2>
-              {cartProduct.price}
+              {cartProduct?.price}
               <span className=" text-base font-extrabold text-gray-500">
                 &#2547;
               </span>
@@ -156,7 +164,10 @@ const CartProduct = ({
             </h2>
           </div>
 
-          <button className="absolute top-0 px-3 hover:text-orange-700 right-0 lg:right-2 text-xl">
+          <button
+            onClick={() => deleteCartProduct(cartProducts._id)}
+            className="absolute top-0 px-3 hover:text-orange-700 right-0 lg:right-2 text-xl"
+          >
             <i className="fa-solid fa-trash-can "></i>
           </button>
         </div>
